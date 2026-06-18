@@ -278,15 +278,51 @@
       message.className = `message ${type}`.trim();
     }
 
-    function getCleanEmbedUrl(rawUrl) {
+    function getCleanEmbedUrl(dashboard) {
+      const rawUrl = dashboard.embed_url;
       const url = new URL(rawUrl);
-      url.searchParams.set('navContentPaneEnabled', 'false');
-      url.searchParams.set('filterPaneEnabled', 'false');
+
+      if (url.hostname !== 'app.powerbi.com') {
+        throw new Error('Dashboard URL must be hosted on app.powerbi.com.');
+      }
+
+      if (dashboard.content_type === 'app' && url.pathname.includes('/apps/')) {
+        const pathParts = url.pathname.split('/').filter(Boolean);
+        const appId = dashboard.app_id || pathParts[pathParts.indexOf('apps') + 1];
+        const reportId = dashboard.report_id || pathParts[pathParts.indexOf('reports') + 1];
+        const pageName = pathParts[pathParts.indexOf('reports') + 2];
+
+        if (!appId || !reportId) {
+          throw new Error('Power BI app URL must include an app ID and report ID.');
+        }
+
+        const embedUrl = new URL('https://app.powerbi.com/reportEmbed');
+        embedUrl.searchParams.set('reportId', reportId);
+        embedUrl.searchParams.set('appId', appId);
+        embedUrl.searchParams.set('autoAuth', 'true');
+
+        const tenantId = url.searchParams.get('ctid') || dashboard.tenant_id;
+        if (tenantId) {
+          embedUrl.searchParams.set('ctid', tenantId);
+        }
+
+        if (pageName) {
+          embedUrl.searchParams.set('pageName', pageName);
+        }
+
+        return embedUrl.toString();
+      }
+
+      if (dashboard.content_type === 'report') {
+        url.searchParams.set('navContentPaneEnabled', 'false');
+        url.searchParams.set('filterPaneEnabled', 'false');
+      }
+
       return url.toString();
     }
 
     function showDashboard(dashboard) {
-      frame.src = getCleanEmbedUrl(dashboard.embed_url);
+      frame.src = getCleanEmbedUrl(dashboard);
       frame.classList.remove('hidden');
       emptyState.classList.add('hidden');
       panel.classList.add('hidden');
@@ -299,7 +335,7 @@
     async function loadDashboard() {
       const { data, error } = await supabase
         .from('power_bi_dashboards')
-        .select('id, name, embed_url')
+        .select('id, name, content_type, embed_url, app_id, report_id, tenant_id')
         .eq('is_active', true)
         .order('created_at', { ascending: true })
         .limit(1)
@@ -317,7 +353,12 @@
         return;
       }
 
-      showDashboard(data);
+      try {
+        showDashboard(data);
+      } catch (urlError) {
+        setMessage(urlError.message, 'error');
+        panel.classList.remove('hidden');
+      }
     }
 
     function lockDashboard() {
