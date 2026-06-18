@@ -53,6 +53,7 @@ create table public.power_bi_dashboards (
   content_type text not null default 'app',
   app_id text,
   app_url text,
+  tenant_id text,
   workspace_id text,
   report_id text,
   dataset_id text,

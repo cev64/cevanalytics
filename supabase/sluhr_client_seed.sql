@@ -79,6 +79,7 @@ begin
       content_type,
       app_id,
       app_url,
+      tenant_id,
       report_id,
       is_active
     )
@@ -86,22 +87,24 @@ begin
       target_client_id,
       'sluhr',
       'SLU HR Power BI dashboard',
-      'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+      'https://app.powerbi.com/reportEmbed?reportId=cd4e7a75-eed4-4499-8247-7544a8cf8a46&appId=d8360d81-fd0a-414e-ad23-0d52b07a74bb&autoAuth=true&ctid=2d0ad075-b724-4e09-be9f-55c901df5cd8&pageName=9727d21b8f88e2dd3b27',
       'app',
       'd8360d81-fd0a-414e-ad23-0d52b07a74bb',
       'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
-      null,
+      '2d0ad075-b724-4e09-be9f-55c901df5cd8',
+      'cd4e7a75-eed4-4499-8247-7544a8cf8a46',
       true
     )
     returning id into target_dashboard_id;
   else
     update public.power_bi_dashboards
     set description = 'SLU HR Power BI dashboard',
-        embed_url = 'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+        embed_url = 'https://app.powerbi.com/reportEmbed?reportId=cd4e7a75-eed4-4499-8247-7544a8cf8a46&appId=d8360d81-fd0a-414e-ad23-0d52b07a74bb&autoAuth=true&ctid=2d0ad075-b724-4e09-be9f-55c901df5cd8&pageName=9727d21b8f88e2dd3b27',
         content_type = 'app',
         app_id = 'd8360d81-fd0a-414e-ad23-0d52b07a74bb',
         app_url = 'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
-        report_id = null,
+        tenant_id = '2d0ad075-b724-4e09-be9f-55c901df5cd8',
+        report_id = 'cd4e7a75-eed4-4499-8247-7544a8cf8a46',
         is_active = true
     where id = target_dashboard_id;
   end if;
