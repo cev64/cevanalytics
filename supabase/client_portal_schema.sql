@@ -50,12 +50,18 @@ create table public.power_bi_dashboards (
   name text not null,
   description text,
   embed_url text not null,
+  content_type text not null default 'app',
+  app_id text,
+  app_url text,
+  tenant_id text,
   workspace_id text,
   report_id text,
   dataset_id text,
   is_active boolean not null default true,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  constraint power_bi_dashboards_content_type_check
+    check (content_type in ('app', 'report', 'dashboard', 'tile'))
 );
 
 create table public.dashboard_user_access (
