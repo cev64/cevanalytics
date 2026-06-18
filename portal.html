@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEV Analytics | Client Portal</title>
+  <meta name="description" content="Secure client portal for CEV Analytics dashboard access." />
+  <link rel="icon" type="image/png" href="cevlog.png" />
+  <link rel="apple-touch-icon" href="cevlog.png" />
+  <style>
+    :root {
+      --bg: #030712;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-strong: rgba(255, 255, 255, 0.13);
+      --blue: #0798ff;
+      --blue-2: #20d4ff;
+      --ice: #eaf4ff;
+      --muted: #91a7bf;
+      --line: rgba(133, 214, 255, 0.24);
+      --danger: #ff6b8a;
+      --success: #69f0ae;
+      --shadow: 0 24px 70px rgba(0, 149, 255, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ice);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(0, 169, 255, 0.24), transparent 28rem),
+        radial-gradient(circle at 15% 25%, rgba(0, 91, 255, 0.16), transparent 24rem),
+        linear-gradient(135deg, #02040a 0%, #061020 52%, #020710 100%);
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(2, 7, 18, 0.72);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .home-link {
+      padding: 10px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      background: rgba(7, 152, 255, 0.12);
+    }
+
+    main {
+      padding: 54px 0 70px;
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 410px) 1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(145deg, var(--panel), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+      color: #b9eaff;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue-2);
+      box-shadow: 0 0 18px var(--blue-2);
+    }
+
+    h1, h2 { margin: 0; }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
+
+    p {
+      color: rgba(234, 244, 255, 0.76);
+      line-height: 1.7;
+    }
+
+    label {
+      display: block;
+      margin: 18px 0 8px;
+      color: rgba(234, 244, 255, 0.82);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      outline: none;
+      color: white;
+      background: rgba(255,255,255,0.08);
+      font: inherit;
+    }
+
+    input:focus {
+      border-color: rgba(32, 212, 255, 0.7);
+      box-shadow: 0 0 0 4px rgba(32, 212, 255, 0.12);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: #00111e;
+      font: inherit;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .message {
+      min-height: 24px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .message.error { color: var(--danger); }
+    .message.success { color: var(--success); }
+
+    .dashboard-card {
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .embed-frame {
+      flex: 1;
+      min-height: 520px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .placeholder {
+      flex: 1;
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      border: 1px dashed rgba(133, 214, 255, 0.35);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.045);
+      text-align: center;
+    }
+
+    .config-list {
+      margin: 22px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 900px) {
+      .portal-grid { grid-template-columns: 1fr; }
+      .dashboard-card { min-height: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="index.html" aria-label="CEV Analytics home">
+        <img src="cevlog.png" alt="CEV Analytics logo" />
+        <span>CEV Analytics Portal</span>
+      </a>
+      <a class="home-link" href="index.html">Back to website</a>
+    </div>
+  </header>
+
+  <main class="shell">
+    <div class="portal-grid">
+      <section class="card" aria-labelledby="login-title">
+        <div class="eyebrow">Client access</div>
+        <h1 id="login-title">Sign in to your dashboard.</h1>
+        <p>Use the username and password issued by CEV Analytics. This page is wired for Supabase Auth and can later support client-specific dashboard URLs and row-level security.</p>
+
+        <form id="login-form">
+          <label for="email">Username or email</label>
+          <input id="email" name="email" type="email" autocomplete="username" required />
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+
+          <button id="login-button" type="submit">Sign in</button>
+        </form>
+
+        <button id="logout-button" class="secondary hidden" type="button">Sign out</button>
+        <div id="login-message" class="message" role="status"></div>
+
+        <ul class="config-list">
+          <li>Supabase connection is configured for the CEV Analytics project.</li>
+          <li>Dashboard access will be loaded from Supabase after sign-in.</li>
+          <li>Use Supabase Auth now; add RLS policies when the database is ready.</li>
+        </ul>
+      </section>
+
+      <section class="card dashboard-card" aria-labelledby="dashboard-title">
+        <div class="dashboard-header">
+          <div>
+            <div class="eyebrow">Power BI</div>
+            <h2 id="dashboard-title">Client dashboard</h2>
+            <p id="dashboard-copy">Sign in to load the dashboard you are allowed to access.</p>
+          </div>
+        </div>
+
+        <div id="dashboard-placeholder" class="placeholder">
+          <div>
+            <h2>Dashboard locked</h2>
+            <p>After sign-in, this area will display the Power BI dashboard embed.</p>
+          </div>
+        </div>
+
+        <iframe id="dashboard-frame" class="embed-frame hidden" title="CEV Analytics Power BI dashboard" allowfullscreen></iframe>
+      </section>
+    </div>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const config = {
+      supabaseUrl: 'https://yqmweembxryqtvcxbrgd.supabase.co',
+      supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxbXdlZW1ieHJ5cXR2Y3hicmdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MTAzMjgsImV4cCI6MjA5NzM4NjMyOH0.KufFQLqmgbzSaO9-TFbXNYmBMDc9lfpjb1SZ_z-lZeI'
+    };
+
+    const form = document.getElementById('login-form');
+    const loginButton = document.getElementById('login-button');
+    const logoutButton = document.getElementById('logout-button');
+    const message = document.getElementById('login-message');
+    const placeholder = document.getElementById('dashboard-placeholder');
+    const frame = document.getElementById('dashboard-frame');
+    const dashboardCopy = document.getElementById('dashboard-copy');
+
+    const isConfigured = Boolean(config.supabaseUrl && config.supabaseAnonKey);
+    const supabase = isConfigured ? createClient(config.supabaseUrl, config.supabaseAnonKey) : null;
+
+    function setMessage(text, type = '') {
+      message.textContent = text;
+      message.className = `message ${type}`.trim();
+    }
+
+    function showDashboard(dashboard) {
+      frame.src = dashboard.embed_url;
+      frame.classList.remove('hidden');
+      placeholder.classList.add('hidden');
+      form.classList.add('hidden');
+      logoutButton.classList.remove('hidden');
+      dashboardCopy.textContent = `${dashboard.name} is loaded below.`;
+      setMessage('Signed in successfully.', 'success');
+    }
+
+    async function loadDashboard() {
+      const { data, error } = await supabase
+        .from('power_bi_dashboards')
+        .select('id, name, embed_url')
+        .eq('is_active', true)
+        .order('created_at', { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+      if (error) {
+        setMessage(error.message, 'error');
+        return;
+      }
+
+      if (!data) {
+        setMessage('No dashboard has been assigned to this login yet.', 'error');
+        return;
+      }
+
+      showDashboard(data);
+    }
+
+    function lockDashboard() {
+      frame.removeAttribute('src');
+      frame.classList.add('hidden');
+      placeholder.classList.remove('hidden');
+      form.classList.remove('hidden');
+      logoutButton.classList.add('hidden');
+      dashboardCopy.textContent = 'Sign in to load the dashboard you are allowed to access.';
+    }
+
+    if (!isConfigured) {
+      setMessage('Portal setup is waiting on Supabase credentials.', 'error');
+      loginButton.disabled = true;
+    } else {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        await loadDashboard();
+      }
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!supabase) return;
+
+      loginButton.disabled = true;
+      setMessage('Signing in...');
+
+      const formData = new FormData(form);
+      const email = formData.get('email');
+      const password = formData.get('password');
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      loginButton.disabled = false;
+
+      if (error) {
+        setMessage(error.message, 'error');
+        return;
+      }
+
+      await loadDashboard();
+    });
+
+    logoutButton.addEventListener('click', async () => {
+      if (supabase) {
+        await supabase.auth.signOut();
+      }
+      lockDashboard();
+      setMessage('Signed out.');
+    });
+  </script>
+</body>
+</html>
