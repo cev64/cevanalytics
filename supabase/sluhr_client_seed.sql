@@ -22,7 +22,7 @@ begin
   end if;
 
   insert into public.profiles (id, email, full_name, company_name, role, is_active)
-  values (
+    values (
     target_user_id,
     'vonderheidcharlie@gmail.com',
     'Charlie Vonderheid',
@@ -49,7 +49,7 @@ begin
     insert into public.clients (name, contact_email, is_active)
     values ('SLU HR', 'vonderheidcharlie@gmail.com', true)
     returning id into target_client_id;
-  else
+    else
     update public.clients
     set contact_email = 'vonderheidcharlie@gmail.com',
         is_active = true
@@ -57,7 +57,7 @@ begin
   end if;
 
   insert into public.client_members (client_id, user_id, member_role, is_active)
-  values (target_client_id, target_user_id, 'viewer', true)
+    values (target_client_id, target_user_id, 'viewer', true)
   on conflict (client_id, user_id) do update
   set member_role = excluded.member_role,
       is_active = excluded.is_active;
@@ -76,6 +76,9 @@ begin
       name,
       description,
       embed_url,
+      content_type,
+      app_id,
+      app_url,
       report_id,
       is_active
     )
@@ -83,22 +86,28 @@ begin
       target_client_id,
       'sluhr',
       'SLU HR Power BI dashboard',
-      'https://app.powerbi.com/reportEmbed?reportId=cd4e7a75-eed4-4499-8247-7544a8cf8a46&autoAuth=true&ctid=2d0ad075-b724-4e09-be9f-55c901df5cd8',
-      'cd4e7a75-eed4-4499-8247-7544a8cf8a46',
+      'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+      'app',
+      'd8360d81-fd0a-414e-ad23-0d52b07a74bb',
+      'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+      null,
       true
     )
     returning id into target_dashboard_id;
   else
     update public.power_bi_dashboards
     set description = 'SLU HR Power BI dashboard',
-        embed_url = 'https://app.powerbi.com/reportEmbed?reportId=cd4e7a75-eed4-4499-8247-7544a8cf8a46&autoAuth=true&ctid=2d0ad075-b724-4e09-be9f-55c901df5cd8',
-        report_id = 'cd4e7a75-eed4-4499-8247-7544a8cf8a46',
+        embed_url = 'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+        content_type = 'app',
+        app_id = 'd8360d81-fd0a-414e-ad23-0d52b07a74bb',
+        app_url = 'https://app.powerbi.com/groups/me/apps/d8360d81-fd0a-414e-ad23-0d52b07a74bb/reports/cd4e7a75-eed4-4499-8247-7544a8cf8a46/9727d21b8f88e2dd3b27?experience=power-bi',
+        report_id = null,
         is_active = true
     where id = target_dashboard_id;
   end if;
 
   insert into public.dashboard_user_access (dashboard_id, user_id, is_active)
-  values (target_dashboard_id, target_user_id, true)
+    values (target_dashboard_id, target_user_id, true)
   on conflict (dashboard_id, user_id) do update
   set is_active = excluded.is_active;
 end $$;

@@ -278,15 +278,24 @@
       message.className = `message ${type}`.trim();
     }
 
-    function getCleanEmbedUrl(rawUrl) {
+    function getCleanEmbedUrl(dashboard) {
+      const rawUrl = dashboard.embed_url;
       const url = new URL(rawUrl);
-      url.searchParams.set('navContentPaneEnabled', 'false');
-      url.searchParams.set('filterPaneEnabled', 'false');
+
+      if (url.hostname !== 'app.powerbi.com') {
+        throw new Error('Dashboard URL must be hosted on app.powerbi.com.');
+      }
+
+      if (dashboard.content_type === 'report') {
+        url.searchParams.set('navContentPaneEnabled', 'false');
+        url.searchParams.set('filterPaneEnabled', 'false');
+      }
+
       return url.toString();
     }
 
     function showDashboard(dashboard) {
-      frame.src = getCleanEmbedUrl(dashboard.embed_url);
+      frame.src = getCleanEmbedUrl(dashboard);
       frame.classList.remove('hidden');
       emptyState.classList.add('hidden');
       panel.classList.add('hidden');
@@ -299,7 +308,7 @@
     async function loadDashboard() {
       const { data, error } = await supabase
         .from('power_bi_dashboards')
-        .select('id, name, embed_url')
+        .select('id, name, content_type, embed_url')
         .eq('is_active', true)
         .order('created_at', { ascending: true })
         .limit(1)
@@ -317,7 +326,12 @@
         return;
       }
 
-      showDashboard(data);
+      try {
+        showDashboard(data);
+      } catch (urlError) {
+        setMessage(urlError.message, 'error');
+        panel.classList.remove('hidden');
+      }
     }
 
     function lockDashboard() {
