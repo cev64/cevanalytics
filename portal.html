@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEV Analytics | Client Portal</title>
+  <meta name="description" content="Secure client portal for CEV Analytics dashboard access." />
+  <link rel="icon" type="image/png" href="cevlog.png" />
+  <link rel="apple-touch-icon" href="cevlog.png" />
+  <style>
+    :root {
+      --bg: #030712;
+      --panel: rgba(3, 7, 18, 0.82);
+      --panel-strong: rgba(8, 26, 51, 0.94);
+      --blue: #0798ff;
+      --blue-2: #20d4ff;
+      --ice: #eaf4ff;
+      --muted: #91a7bf;
+      --line: rgba(133, 214, 255, 0.24);
+      --danger: #ff6b8a;
+      --success: #69f0ae;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ice);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(0, 169, 255, 0.24), transparent 28rem),
+        radial-gradient(circle at 15% 25%, rgba(0, 91, 255, 0.16), transparent 24rem),
+        linear-gradient(135deg, #02040a 0%, #061020 52%, #020710 100%);
+      overflow: hidden;
+    }
+
+    a { color: inherit; }
+
+    .dashboard-shell {
+      position: fixed;
+      inset: 0;
+      padding: 10px;
+    }
+
+    .dashboard-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 0 0 1px rgba(133, 214, 255, 0.18), var(--shadow);
+    }
+
+    .empty-state {
+      position: fixed;
+      inset: 10px;
+      display: grid;
+      place-items: center;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.045);
+      text-align: center;
+      padding: 28px;
+    }
+
+    .empty-state h1 {
+      margin: 0 0 10px;
+      font-size: clamp(30px, 5vw, 58px);
+      letter-spacing: -0.055em;
+    }
+
+    .empty-state p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .portal-controls {
+      position: fixed;
+      top: 22px;
+      right: 22px;
+      z-index: 20;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .brand-chip,
+    .control-button {
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: var(--panel);
+      color: white;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .brand-chip img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 7px;
+    }
+
+    .control-button {
+      padding: 10px 15px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .control-button.primary {
+      border-color: rgba(32, 212, 255, 0.42);
+      background: linear-gradient(135deg, rgba(7, 152, 255, 0.94), rgba(32, 212, 255, 0.9));
+      color: #00111e;
+    }
+
+    .login-panel {
+      position: fixed;
+      top: 78px;
+      right: 22px;
+      z-index: 25;
+      width: min(360px, calc(100vw - 44px));
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--panel-strong);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(22px);
+    }
+
+    .login-panel h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .login-panel p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 7px;
+      color: rgba(234, 244, 255, 0.82);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 13px;
+      outline: none;
+      color: white;
+      background: rgba(255,255,255,0.08);
+      font: inherit;
+    }
+
+    input:focus {
+      border-color: rgba(32, 212, 255, 0.7);
+      box-shadow: 0 0 0 4px rgba(32, 212, 255, 0.12);
+    }
+
+    .submit-button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 13px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-2));
+      color: #00111e;
+      font: inherit;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .message {
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .message.error { color: var(--danger); }
+    .message.success { color: var(--success); }
+    .hidden { display: none !important; }
+
+    @media (max-width: 720px) {
+      .dashboard-shell { padding: 6px; }
+      .empty-state { inset: 6px; }
+      .portal-controls { top: 14px; right: 14px; }
+      .brand-chip span { display: none; }
+      .login-panel { top: 68px; right: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="dashboard-shell" aria-label="Client dashboard">
+    <div id="empty-state" class="empty-state">
+      <div>
+        <h1>Client Portal</h1>
+        <p>Sign in to view your dashboard.</p>
+      </div>
+    </div>
+    <iframe id="dashboard-frame" class="dashboard-frame hidden" title="CEV Analytics Power BI dashboard" allowfullscreen></iframe>
+  </main>
+
+  <div class="portal-controls" aria-label="Portal controls">
+    <a class="brand-chip" href="index.html" aria-label="Back to CEV Analytics home">
+      <img src="cevlog.png" alt="" />
+      <span>CEV Analytics</span>
+    </a>
+    <button id="auth-toggle" class="control-button primary" type="button">Sign in</button>
+  </div>
+
+  <section id="login-panel" class="login-panel hidden" aria-labelledby="login-title">
+    <h1 id="login-title">Sign in</h1>
+    <p>Enter your client portal credentials.</p>
+
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="username" required />
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+
+      <button id="login-button" class="submit-button" type="submit">Sign in</button>
+    </form>
+
+    <div id="login-message" class="message" role="status"></div>
+  </section>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const config = {
+      supabaseUrl: 'https://yqmweembxryqtvcxbrgd.supabase.co',
+      supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxbXdlZW1ieHJ5cXR2Y3hicmdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MTAzMjgsImV4cCI6MjA5NzM4NjMyOH0.KufFQLqmgbzSaO9-TFbXNYmBMDc9lfpjb1SZ_z-lZeI'
+    };
+
+    const authToggle = document.getElementById('auth-toggle');
+    const panel = document.getElementById('login-panel');
+    const form = document.getElementById('login-form');
+    const loginButton = document.getElementById('login-button');
+    const message = document.getElementById('login-message');
+    const emptyState = document.getElementById('empty-state');
+    const frame = document.getElementById('dashboard-frame');
+
+    const isConfigured = Boolean(config.supabaseUrl && config.supabaseAnonKey);
+    const supabase = isConfigured ? createClient(config.supabaseUrl, config.supabaseAnonKey) : null;
+    let signedIn = false;
+
+    function setMessage(text, type = '') {
+      message.textContent = text;
+      message.className = `message ${type}`.trim();
+    }
+
+    function getCleanEmbedUrl(rawUrl) {
+      const url = new URL(rawUrl);
+      url.searchParams.set('navContentPaneEnabled', 'false');
+      url.searchParams.set('filterPaneEnabled', 'false');
+      return url.toString();
+    }
+
+    function showDashboard(dashboard) {
+      frame.src = getCleanEmbedUrl(dashboard.embed_url);
+      frame.classList.remove('hidden');
+      emptyState.classList.add('hidden');
+      panel.classList.add('hidden');
+      authToggle.textContent = 'Logout';
+      authToggle.classList.remove('primary');
+      signedIn = true;
+      setMessage('');
+    }
+
+    async function loadDashboard() {
+      const { data, error } = await supabase
+        .from('power_bi_dashboards')
+        .select('id, name, embed_url')
+        .eq('is_active', true)
+        .order('created_at', { ascending: true })
+        .limit(1)
+        .maybeSingle();
+
+      if (error) {
+        setMessage(error.message, 'error');
+        panel.classList.remove('hidden');
+        return;
+      }
+
+      if (!data) {
+        setMessage('No dashboard has been assigned to this login yet.', 'error');
+        panel.classList.remove('hidden');
+        return;
+      }
+
+      showDashboard(data);
+    }
+
+    function lockDashboard() {
+      frame.removeAttribute('src');
+      frame.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      authToggle.textContent = 'Sign in';
+      authToggle.classList.add('primary');
+      signedIn = false;
+    }
+
+    if (!isConfigured) {
+      setMessage('Portal setup is incomplete.', 'error');
+      loginButton.disabled = true;
+      panel.classList.remove('hidden');
+    } else {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        await loadDashboard();
+      }
+    }
+
+    authToggle.addEventListener('click', async () => {
+      if (signedIn) {
+        await supabase.auth.signOut();
+        lockDashboard();
+        return;
+      }
+
+      panel.classList.toggle('hidden');
+      setMessage('');
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!supabase) return;
+
+      loginButton.disabled = true;
+      setMessage('Signing in...');
+
+      const formData = new FormData(form);
+      const email = formData.get('email');
+      const password = formData.get('password');
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+
+      loginButton.disabled = false;
+
+      if (error) {
+        setMessage(error.message, 'error');
+        return;
+      }
+
+      await loadDashboard();
+    });
+  </script>
+</body>
+</html>
