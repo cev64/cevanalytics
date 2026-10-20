@@ -30,6 +30,7 @@
   <link rel="preload" href="/assets/fonts/outfit-latin-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("cev-theme");
       if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
@@ -67,10 +68,9 @@
       <div class="container hero__grid">
         <div class="hero__copy">
           <h1 id="hero-title">Custom software for work that&rsquo;s outgrown spreadsheets.</h1>
-          <p class="hero__lead">CEV builds internal tools, data systems and AI workflows for growing companies, at a fixed price, in weeks.</p>
+          <p class="hero__lead">Internal tools, data systems and AI workflows. Fixed price, delivered in weeks.</p>
           <div class="hero__actions">
             <a class="button" href="mailto:info@cevanalytics.com?subject=Systems%20Audit%20request&amp;body=Company%20and%20team%20size%3A%0A%0AThe%20process%20or%20tool%20causing%20trouble%3A%0A%0ASoftware%20and%20spreadsheets%20involved%3A%0A%0AAnything%20already%20tried%3A%0A%0ATimeline%3A%0A">Book a Systems Audit</a>
-            <p class="hero__note">Based in Charlotte, NC. Working with teams anywhere.</p>
           </div>
         </div>
         <figure class="hero__figure">
@@ -124,53 +124,115 @@
 
     <section class="section" id="build" aria-labelledby="build-title">
       <div class="container">
-        <div class="grid section-head">
-          <h2 id="build-title">What we build</h2>
-          <p>The best place to start is something specific: a task your team does by hand every week, or a tool you pay for that only does half the job.</p>
-        </div>
+        <h2 id="build-title" class="section-title">What we build</h2>
 
-        <div class="practices">
-          <article class="practice grid">
-            <div class="practice__intro">
+        <div class="bento">
+          <article class="card card--wide">
+            <div class="card__art">
+              <svg class="il" viewBox="0 0 400 260" aria-hidden="true" focusable="false">
+                <rect class="il-frame" x="10.5" y="10.5" width="379" height="239" rx="14"/>
+                <path class="il-side" d="M11 45h99v204H25a14 14 0 0 1-14-14z"/>
+                <path class="il-rule" d="M11 44.5h378"/>
+                <rect class="il-dot" x="24" y="23" width="9" height="9" rx="3"/>
+                <rect class="il-dot" x="38" y="23" width="9" height="9" rx="3"/>
+                <rect class="il-dot" x="52" y="23" width="9" height="9" rx="3"/>
+                <rect class="il-accent" x="24" y="62" width="70" height="12" rx="6"/>
+                <rect class="il-muted" x="24" y="88" width="56" height="12" rx="6"/>
+                <rect class="il-muted" x="24" y="114" width="64" height="12" rx="6"/>
+                <rect class="il-muted" x="24" y="140" width="48" height="12" rx="6"/>
+                <rect class="il-ink" x="130" y="62" width="120" height="14" rx="7"/>
+                <rect class="il-accent" x="318" y="58" width="56" height="22" rx="8"/>
+                <g class="il-rows">
+                  <path class="il-rule" d="M130 100.5h244M130 128.5h244M130 156.5h244M130 184.5h244M130 212.5h244"/>
+                  <rect class="il-strong" x="130" y="109" width="92" height="10" rx="5"/><rect class="il-muted" x="238" y="109" width="56" height="10" rx="5"/><rect class="il-pill il-pill--on" x="322" y="106" width="52" height="16" rx="8"/>
+                  <rect class="il-strong" x="130" y="137" width="74" height="10" rx="5"/><rect class="il-muted" x="238" y="137" width="64" height="10" rx="5"/><rect class="il-pill" x="322.5" y="134.5" width="51" height="15" rx="7.5"/>
+                  <rect class="il-strong" x="130" y="165" width="100" height="10" rx="5"/><rect class="il-muted" x="238" y="165" width="48" height="10" rx="5"/><rect class="il-pill il-pill--on" x="322" y="162" width="52" height="16" rx="8"/>
+                  <rect class="il-strong" x="130" y="193" width="66" height="10" rx="5"/><rect class="il-muted" x="238" y="193" width="60" height="10" rx="5"/><rect class="il-pill il-pill--on" x="322" y="190" width="52" height="16" rx="8"/>
+                  <rect class="il-strong" x="130" y="221" width="84" height="10" rx="5"/><rect class="il-muted" x="238" y="221" width="52" height="10" rx="5"/><rect class="il-pill" x="322.5" y="218.5" width="51" height="15" rx="7.5"/>
+                </g>
+              </svg>
+            </div>
+            <div class="card__body">
               <h3>Systems</h3>
-              <p>Internal tools and portals built around how your team actually works, instead of a generic SaaS product they have to work around.</p>
-            </div>
-            <div class="practice__examples">
-              <span class="label">For example</span>
-              <ul>
-              <li>Replace the six spreadsheets your ops team reconciles every Friday with one app and one source of truth.</li>
-              <li>A job-tracking tool for a field services company that connects dispatch, technician notes and invoicing.</li>
-              <li>A client intake and status portal for a law or accounting firm, so clients stop emailing to ask where their file stands.</li>
+              <p>Internal tools and portals built around how your team works.</p>
+              <ul class="tags">
+                <li>Ops portals</li>
+                <li>Job tracking</li>
+                <li>Client intake</li>
+                <li>Spreadsheet replacements</li>
               </ul>
             </div>
           </article>
 
-          <article class="practice grid">
-            <div class="practice__intro">
+          <article class="card">
+            <div class="card__art">
+              <svg class="il il--chart" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <path class="il-wire" d="M84 34c36 0 36 56 66 56M84 90h66M84 146c36 0 36-56 66-56"/>
+                <rect class="il-frame" x="10.5" y="16.5" width="73" height="35" rx="10"/>
+                <rect class="il-frame" x="10.5" y="72.5" width="73" height="35" rx="10"/>
+                <rect class="il-frame" x="10.5" y="128.5" width="73" height="35" rx="10"/>
+                <rect class="il-muted" x="22" y="30" width="44" height="8" rx="4"/>
+                <rect class="il-muted" x="22" y="86" width="36" height="8" rx="4"/>
+                <rect class="il-muted" x="22" y="142" width="48" height="8" rx="4"/>
+                <path class="il-wire" d="M164 90h20"/>
+                <rect class="il-accent" x="148" y="82" width="16" height="16" rx="5"/>
+                <rect class="il-frame" x="184.5" y="16.5" width="125" height="147" rx="14"/>
+                <rect class="il-ink" x="200" y="32" width="56" height="9" rx="4.5"/>
+                <path class="il-rule" d="M200 143.5h94"/>
+                <g class="il-bars">
+                  <rect class="il-accent" x="204" y="113" width="12" height="30" rx="4"/>
+                  <rect class="il-accent" x="222" y="95" width="12" height="48" rx="4"/>
+                  <rect class="il-accent" x="240" y="104" width="12" height="39" rx="4"/>
+                  <rect class="il-accent" x="258" y="77" width="12" height="66" rx="4"/>
+                  <rect class="il-accent" x="276" y="62" width="12" height="81" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="card__body">
               <h3>Data &amp; Analytics</h3>
-              <p>Pipelines that pull your data into one place automatically, and reports that are already done when Monday starts.</p>
-            </div>
-            <div class="practice__examples">
-              <span class="label">For example</span>
-              <ul>
-              <li>Combine order, inventory and ad-spend data from an online store into a warehouse you own.</li>
-              <li>Weekly job-costing reports for a construction company, pulled from accounting and project management without anyone copying and pasting.</li>
-              <li>Dashboards for a group of clinics showing appointment volume, no-shows and payer mix by location.</li>
+              <p>Your data in one place, with reports that build themselves.</p>
+              <ul class="tags">
+                <li>Pipelines</li>
+                <li>Warehouses</li>
+                <li>Automated reports</li>
+                <li>Dashboards</li>
               </ul>
             </div>
           </article>
 
-          <article class="practice grid">
-            <div class="practice__intro">
-              <h3>AI Workflows</h3>
-              <p>Document extraction, summarization and agents for repetitive reading and routing work. Each one ships with tests and logging, so you can see what it did and catch it when it's wrong.</p>
+          <article class="card">
+            <div class="card__art">
+              <svg class="il" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <path class="il-wire" d="M112 58c20 0 22 32 42 32M112 112c20 0 22-22 42-22M190 90c20 0 18-40 36-40M190 90h36M190 90c20 0 18 40 36 40"/>
+                <rect class="il-frame" x="14.5" y="14.5" width="97" height="151" rx="12"/>
+                <rect class="il-ink" x="28" y="30" width="48" height="8" rx="4"/>
+                <rect class="il-hl" x="24" y="52" width="80" height="12" rx="6"/>
+                <rect class="il-muted" x="28" y="55" width="60" height="6" rx="3"/>
+                <rect class="il-muted" x="28" y="72" width="70" height="6" rx="3"/>
+                <rect class="il-muted" x="28" y="86" width="52" height="6" rx="3"/>
+                <rect class="il-hl" x="24" y="106" width="80" height="12" rx="6"/>
+                <rect class="il-muted" x="28" y="109" width="64" height="6" rx="3"/>
+                <rect class="il-muted" x="28" y="126" width="66" height="6" rx="3"/>
+                <rect class="il-muted" x="28" y="140" width="44" height="6" rx="3"/>
+                <rect class="il-accent" x="154" y="72" width="36" height="36" rx="10"/>
+                <rect class="il-on-accent" x="163" y="81" width="18" height="4" rx="2"/>
+                <rect class="il-on-accent" x="163" y="88" width="14" height="4" rx="2"/>
+                <rect class="il-on-accent" x="163" y="95" width="18" height="4" rx="2"/>
+                <g class="il-fields">
+                  <rect class="il-frame" x="226.5" y="38.5" width="83" height="23" rx="8"/><rect class="il-muted" x="236" y="47" width="22" height="6" rx="3"/><rect class="il-strong" x="264" y="47" width="34" height="6" rx="3"/>
+                  <rect class="il-frame" x="226.5" y="78.5" width="83" height="23" rx="8"/><rect class="il-muted" x="236" y="87" width="18" height="6" rx="3"/><rect class="il-strong" x="260" y="87" width="38" height="6" rx="3"/>
+                  <rect class="il-frame" x="226.5" y="118.5" width="83" height="23" rx="8"/><rect class="il-muted" x="236" y="127" width="26" height="6" rx="3"/><rect class="il-strong" x="268" y="127" width="30" height="6" rx="3"/>
+                </g>
+              </svg>
             </div>
-            <div class="practice__examples">
-              <span class="label">For example</span>
-              <ul>
-              <li>Pull line items, dates and totals from freight bills and carrier invoices into your logistics system.</li>
-              <li>Summarize intake calls or consultation notes into a standard format your team can check and correct.</li>
-              <li>Triage an agency's shared inbox: classify requests, draft replies, and route each one to the right person for approval.</li>
+            <div class="card__body">
+              <h3>AI Workflows</h3>
+              <p>Extraction, summaries and agents, with tests and logging.</p>
+              <ul class="tags">
+                <li>Document extraction</li>
+                <li>Summaries</li>
+                <li>Inbox triage</li>
+                <li>Agents</li>
               </ul>
             </div>
           </article>
@@ -180,61 +242,53 @@
 
     <section class="section fit" id="fit" aria-labelledby="fit-title">
       <div class="container">
-        <div class="grid section-head">
-          <h2 id="fit-title">Who it's for</h2>
-          <p class="fit__statement">Companies of roughly 10 to 500 people that have outgrown their spreadsheets but don't have a software team.</p>
-        </div>
-        <ul class="fit__list grid">
-          <li><strong>Ops-heavy businesses</strong>Logistics, construction, field services and e-commerce, where much of the work is moving information between systems.</li>
-          <li><strong>Professional services firms</strong>Law, accounting, agencies and clinics, where staff time goes to intake, status updates and paperwork.</li>
-          <li><strong>Founders with a half-built app</strong>It works in a demo, but needs authentication, testing, monitoring and a real deployment before customers depend on it.</li>
+        <h2 id="fit-title" class="section-title">Who it's for</h2>
+        <p class="section-sub">Teams of 10 to 500 people without a software team.</p>
+        <ul class="fit__list">
+          <li>
+            <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.75 6.75a1 1 0 0 1 1-1h9.5a1 1 0 0 1 1 1v9.5h-11.5z"/><path d="M14.25 9.25h3.6l3.4 3.6v3.4h-7"/><circle cx="7" cy="17.5" r="1.75"/><circle cx="17.5" cy="17.5" r="1.75"/></svg></span>
+            <strong>Ops-heavy businesses</strong>
+            Logistics, construction, field services, e-commerce.
+          </li>
+          <li>
+            <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="3"/><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18"/></svg></span>
+            <strong>Professional services</strong>
+            Law, accounting, agencies, clinics.
+          </li>
+          <li>
+            <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4H6a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h6M3 9h9"/><path class="dash" d="M12 4h6a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-6M12 9h9"/></svg></span>
+            <strong>Founders with a half-built app</strong>
+            Get it production-ready before customers depend on it.
+          </li>
         </ul>
       </div>
     </section>
 
     <section class="section section--surface" id="process" aria-labelledby="process-title">
       <div class="container">
-        <div class="grid section-head">
-          <h2 id="process-title">How we work</h2>
-          <p>You see the plan and the price before you commit to a build. Each step stands on its own, so you can stop after any of them.</p>
-        </div>
+        <h2 id="process-title" class="section-title">How we work</h2>
+        <p class="section-sub">See the plan and the price before you commit.</p>
 
         <ol class="steps">
           <li class="step">
             <span class="label">Step 1</span>
             <h3>Systems Audit</h3>
-            <p>A short review of how work and data move through your business today. We talk with the people doing the work and look at the tools and files they use.</p>
-            <dl>
-              <dt>What you get</dt>
-              <dd>Written findings and a ranked list of the opportunities most worth fixing.</dd>
-            </dl>
+            <p>Written findings and a ranked list of what to fix.</p>
           </li>
           <li class="step">
-            <span class="label">Step 2</span>
+            <span class="label">Step 2 &middot; 1&ndash;2 weeks</span>
             <h3>Blueprint Sprint</h3>
-            <p>One to two weeks defining exactly what gets built, before any production code.</p>
-            <dl>
-              <dt>What you get</dt>
-              <dd>A written spec, an architecture plan, a clickable prototype and a fixed quote. The sprint fee is credited toward the build.</dd>
-            </dl>
+            <p>Spec, clickable prototype and a fixed quote, credited toward the build.</p>
           </li>
           <li class="step">
             <span class="label">Step 3</span>
             <h3>Fixed-Price Build</h3>
-            <p>We build what the blueprint describes, for the price we quoted.</p>
-            <dl>
-              <dt>What you get</dt>
-              <dd>A demo every week, and a finished system deployed in your own cloud account. You own the code, the data and the infrastructure.</dd>
-            </dl>
+            <p>Weekly demos. Deployed in your own cloud account.</p>
           </li>
           <li class="step">
             <span class="label">Step 4</span>
             <h3>Care Plan</h3>
-            <p>Software needs upkeep after it ships.</p>
-            <dl>
-              <dt>What you get</dt>
-              <dd>Hosting, monitoring and fixes. An Improve retainer adds a standing block of time for new features as the business changes.</dd>
-            </dl>
+            <p>Hosting, monitoring, fixes and ongoing improvements.</p>
           </li>
         </ol>
       </div>
@@ -247,10 +301,7 @@
 
     <section class="section" id="work" aria-labelledby="work-title">
       <div class="container">
-        <div class="grid section-head">
-          <h2 id="work-title">Selected work</h2>
-          <p>Each write-up covers the problem, what we built and what changed.</p>
-        </div>
+        <h2 id="work-title" class="section-title">Selected work</h2>
         <ul class="work">
           <li>
             <h3 class="placeholder">[CASE STUDY 1]</h3>
@@ -279,38 +330,28 @@
     -->
 
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container grid">
+      <div class="container about">
         <div class="about__photo" role="img" aria-label="Photo placeholder">
           <span class="placeholder">[PHOTO]</span>
         </div>
         <div class="about__body">
-          <h2 id="about-title">About</h2>
-          <p class="about__name"><strong>Charlie Vonderheid</strong>, Founder</p>
-          <p>I started CEV in Charlotte after working in data and analytics. The same pattern kept coming up: the report was rarely the real problem. The manual process upstream of it was. Now I build the systems that fix those processes.</p>
-          <p>I use modern AI tooling throughout the work, which means less time on boilerplate and more on what's specific to your business. Every system still gets tests, logging and documentation, so it holds up after handover.</p>
-          <p>You work with me directly, from the first call through launch and support.</p>
+          <h2 id="about-title" class="section-title">About</h2>
+          <p class="about__name"><strong>Charlie Vonderheid</strong>, Founder &middot; Charlotte, NC</p>
+          <p>I started CEV after working in data and analytics. I build with modern AI tooling, and every system ships with tests, logging and docs. You work with me directly.</p>
         </div>
       </div>
     </section>
 
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="contact__panel invert grid">
-          <h2 id="contact-title">Start with a Systems Audit</h2>
-          <div class="contact__body">
-            <p>Email us and tell us what's slowing your team down. It helps to include:</p>
-            <ul>
-              <li>What your company does and roughly how many people work there</li>
-              <li>The process or tool causing the most trouble</li>
-              <li>The software and spreadsheets involved</li>
-              <li>Anything you've already tried, including half-built apps</li>
-              <li>Any deadline you're working against</li>
-            </ul>
-            <p>A few paragraphs is plenty.</p>
+        <div class="contact__panel invert">
+          <div>
+            <h2 id="contact-title">Start with a Systems Audit</h2>
+            <p>Tell us what's slowing your team down. A few lines is plenty.</p>
           </div>
           <div class="contact__action">
             <a class="button" href="mailto:info@cevanalytics.com?subject=Systems%20Audit%20request&amp;body=Company%20and%20team%20size%3A%0A%0AThe%20process%20or%20tool%20causing%20trouble%3A%0A%0ASoftware%20and%20spreadsheets%20involved%3A%0A%0AAnything%20already%20tried%3A%0A%0ATimeline%3A%0A">Book a Systems Audit</a>
-            <p>Or write to <a href="mailto:info@cevanalytics.com">info@cevanalytics.com</a></p>
+            <p><a href="mailto:info@cevanalytics.com">info@cevanalytics.com</a></p>
             <button class="button button--quiet copy-email" type="button" data-copy="info@cevanalytics.com" hidden>Copy email</button>
             <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
           </div>
@@ -318,6 +359,7 @@
       </div>
     </section>
   </main>
+
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
