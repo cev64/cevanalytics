@@ -86,6 +86,30 @@
     update();
   }
 
+  // ---- Illustrations animate once their card scrolls into view ------------
+  var cards = document.querySelectorAll(".card");
+  if (cards.length) {
+    if ("IntersectionObserver" in window) {
+      var reveal = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            reveal.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.35 }
+      );
+      cards.forEach(function (card) {
+        reveal.observe(card);
+      });
+    } else {
+      cards.forEach(function (card) {
+        card.classList.add("is-visible");
+      });
+    }
+  }
+
   // ---- Copy email ------------------------------------------------------------
   var copy = document.querySelector(".copy-email");
   var status = document.querySelector("[data-copy-status]");
