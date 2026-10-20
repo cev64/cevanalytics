@@ -34,7 +34,7 @@
       if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
     } catch (e) {}
   </script>
-  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -75,16 +75,39 @@
         <figure class="hero__figure">
           <svg class="diagram" viewBox="0 0 520 400" role="img" aria-labelledby="diagram-title">
             <title id="diagram-title">Five separate spreadsheets and an inbox feeding into one system with jobs, invoices and a weekly report.</title>
-            <g class="diagram__sources">
-              <g transform="translate(0 20)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">ops_tracker_v7.xlsx</text></g>
-              <g transform="translate(0 88)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">dispatch.xlsx</text></g>
-              <g transform="translate(0 156)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">invoices_final.csv</text></g>
-              <g transform="translate(0 224)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M13.5 14.5h15v15h-15zM13.5 14.5l7.5 7 7.5-7"/><text x="40" y="26.5">Shared inbox</text></g>
-              <g transform="translate(0 292)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">timesheets.xlsx</text></g>
+            <path class="d-wire d-bus" pathLength="1" d="M240.5 42V314"/>
+            <path class="d-wire d-trunk" pathLength="1" d="M240 178H300"/>
+            <g class="d-line" style="--i:0">
+              <g class="d-src" transform="translate(0 20)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">ops_tracker_v7.xlsx</text></g>
+              <path class="d-wire d-stub" pathLength="1" d="M187 42H240"/>
+              <rect class="d-node" x="237" y="39" width="7" height="7"/>
+              <rect class="d-packet" x="-3" y="-3" width="6" height="6"><animateMotion dur="6s" begin="0s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear" path="M187 42H240.5V178H310"/></rect>
             </g>
-            <path class="d-wire" d="M187 42h53M187 110h53M187 178h53M187 246h53M187 314h53M240.5 42v272M240 178h60"/>
-            <g class="d-node"><rect x="237" y="39" width="7" height="7"/><rect x="237" y="107" width="7" height="7"/><rect x="237" y="175" width="7" height="7"/><rect x="237" y="243" width="7" height="7"/><rect x="237" y="311" width="7" height="7"/></g>
-            <g transform="translate(300 64)">
+            <g class="d-line" style="--i:1">
+              <g class="d-src" transform="translate(0 88)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">dispatch.xlsx</text></g>
+              <path class="d-wire d-stub" pathLength="1" d="M187 110H240"/>
+              <rect class="d-node" x="237" y="107" width="7" height="7"/>
+              <rect class="d-packet" x="-3" y="-3" width="6" height="6"><animateMotion dur="6s" begin="-1.2s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear" path="M187 110H240.5V178H310"/></rect>
+            </g>
+            <g class="d-line" style="--i:2">
+              <g class="d-src" transform="translate(0 156)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">invoices_final.csv</text></g>
+              <path class="d-wire d-stub" pathLength="1" d="M187 178H240"/>
+              <rect class="d-node" x="237" y="175" width="7" height="7"/>
+              <rect class="d-packet" x="-3" y="-3" width="6" height="6"><animateMotion dur="6s" begin="-2.4s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear" path="M187 178H240.5V178H310"/></rect>
+            </g>
+            <g class="d-line" style="--i:3">
+              <g class="d-src" transform="translate(0 224)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M13.5 14.5h15v15h-15zM13.5 14.5l7.5 7 7.5-7"/><text x="40" y="26.5">Shared inbox</text></g>
+              <path class="d-wire d-stub" pathLength="1" d="M187 246H240"/>
+              <rect class="d-node" x="237" y="243" width="7" height="7"/>
+              <rect class="d-packet" x="-3" y="-3" width="6" height="6"><animateMotion dur="6s" begin="-3.6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear" path="M187 246H240.5V178H310"/></rect>
+            </g>
+            <g class="d-line" style="--i:4">
+              <g class="d-src" transform="translate(0 292)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">timesheets.xlsx</text></g>
+              <path class="d-wire d-stub" pathLength="1" d="M187 314H240"/>
+              <rect class="d-node" x="237" y="311" width="7" height="7"/>
+              <rect class="d-packet" x="-3" y="-3" width="6" height="6"><animateMotion dur="6s" begin="-4.8s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;0.4;1" calcMode="linear" path="M187 314H240.5V178H310"/></rect>
+            </g>
+            <g class="d-system" transform="translate(300 64)">
               <rect class="d-panel" x="0.5" y="0.5" width="219" height="227" rx="6"/>
               <text class="d-panel-title" x="20" y="32">One system</text>
               <path class="d-rule" d="M1 50h218"/>
@@ -286,6 +309,8 @@
         <div class="contact__action">
           <a class="button" href="mailto:info@cevanalytics.com?subject=Systems%20Audit%20request&amp;body=Company%20and%20team%20size%3A%0A%0AThe%20process%20or%20tool%20causing%20trouble%3A%0A%0ASoftware%20and%20spreadsheets%20involved%3A%0A%0AAnything%20already%20tried%3A%0A%0ATimeline%3A%0A">Book a Systems Audit</a>
           <p>Or write to <a href="mailto:info@cevanalytics.com">info@cevanalytics.com</a></p>
+          <button class="button button--quiet copy-email" type="button" data-copy="info@cevanalytics.com" hidden>Copy email</button>
+          <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
         </div>
       </div>
     </section>
