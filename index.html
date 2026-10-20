@@ -20,7 +20,7 @@
 
   <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon-180.png">
@@ -41,9 +41,9 @@
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="/">
-        <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="86" height="32" alt="CEV home">
-        <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="86" height="32" alt="CEV home">
+      <a class="brand" href="/" aria-label="CEV home">
+        <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="83" height="32" alt="">
+        <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="83" height="32" alt="">
       </a>
       <nav class="site-nav" aria-label="Main">
         <ul>
@@ -61,15 +61,40 @@
     </div>
   </header>
 
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container">
-        <h1 id="hero-title">Software for the parts of your business that run on spreadsheets and workarounds.</h1>
-        <p class="hero__lead">CEV builds internal tools, data systems and AI workflows for growing companies. We scope the problem before we quote, deliver in weeks at a fixed price, and keep the system running after launch.</p>
-        <div class="hero__actions">
-          <a class="button" href="mailto:info@cevanalytics.com?subject=Systems%20Audit%20request&amp;body=Company%20and%20team%20size%3A%0A%0AThe%20process%20or%20tool%20causing%20trouble%3A%0A%0ASoftware%20and%20spreadsheets%20involved%3A%0A%0AAnything%20already%20tried%3A%0A%0ATimeline%3A%0A">Book a Systems Audit</a>
-          <p class="hero__note">Based in Charlotte, NC. Working with teams anywhere.</p>
+  <main id="main" tabindex="-1">
+    <section class="hero invert" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <h1 id="hero-title">Software for the parts of your business that run on spreadsheets and workarounds.</h1>
+          <p class="hero__lead">CEV builds internal tools, data systems and AI workflows for growing companies. We scope the problem before we quote, deliver in weeks at a fixed price, and keep the system running after launch.</p>
+          <div class="hero__actions">
+            <a class="button" href="mailto:info@cevanalytics.com?subject=Systems%20Audit%20request&amp;body=Company%20and%20team%20size%3A%0A%0AThe%20process%20or%20tool%20causing%20trouble%3A%0A%0ASoftware%20and%20spreadsheets%20involved%3A%0A%0AAnything%20already%20tried%3A%0A%0ATimeline%3A%0A">Book a Systems Audit</a>
+            <p class="hero__note">Based in Charlotte, NC. Working with teams anywhere.</p>
+          </div>
         </div>
+        <figure class="hero__figure">
+          <svg class="diagram" viewBox="0 0 520 400" role="img" aria-labelledby="diagram-title">
+            <title id="diagram-title">Five separate spreadsheets and an inbox feeding into one system with jobs, invoices and a weekly report.</title>
+            <g class="diagram__sources">
+              <g transform="translate(0 20)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">ops_tracker_v7.xlsx</text></g>
+              <g transform="translate(0 88)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">dispatch.xlsx</text></g>
+              <g transform="translate(0 156)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">invoices_final.csv</text></g>
+              <g transform="translate(0 224)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M13.5 14.5h15v15h-15zM13.5 14.5l7.5 7 7.5-7"/><text x="40" y="26.5">Shared inbox</text></g>
+              <g transform="translate(0 292)"><rect class="d-box" x="0.5" y="0.5" width="186" height="43" rx="4"/><path class="d-glyph" d="M14 12.5h14v19H14zM14 18.5h14M14 24.5h14M20.5 12.5v19"/><text x="40" y="26.5">timesheets.xlsx</text></g>
+            </g>
+            <path class="d-wire" d="M187 42h53M187 110h53M187 178h53M187 246h53M187 314h53M240.5 42v272M240 178h60"/>
+            <g class="d-node"><rect x="237" y="39" width="7" height="7"/><rect x="237" y="107" width="7" height="7"/><rect x="237" y="175" width="7" height="7"/><rect x="237" y="243" width="7" height="7"/><rect x="237" y="311" width="7" height="7"/></g>
+            <g transform="translate(300 64)">
+              <rect class="d-panel" x="0.5" y="0.5" width="219" height="227" rx="6"/>
+              <text class="d-panel-title" x="20" y="32">One system</text>
+              <path class="d-rule" d="M1 50h218"/>
+              <path class="d-spine" d="M33 92v100"/>
+              <g class="d-bar"><rect x="20" y="72" width="180" height="36" rx="4"/><rect class="d-bar-node" x="28" y="85" width="10" height="10" rx="2"/><text x="50" y="95">Jobs</text></g>
+              <g class="d-bar"><rect x="20" y="124" width="150" height="36" rx="4"/><rect class="d-bar-node" x="28" y="137" width="10" height="10" rx="2"/><text x="50" y="147">Invoices</text></g>
+              <g class="d-bar"><rect x="20" y="176" width="180" height="36" rx="4"/><rect class="d-bar-node" x="28" y="189" width="10" height="10" rx="2"/><text x="50" y="199">Weekly report</text></g>
+            </g>
+          </svg>
+        </figure>
       </div>
     </section>
 
@@ -77,7 +102,7 @@
       <div class="container">
         <div class="grid section-head">
           <h2 id="build-title">What we build</h2>
-          <p>Most projects start with something specific: a task your team does by hand every week, or a tool you pay for that only does half the job.</p>
+          <p>The best place to start is something specific: a task your team does by hand every week, or a tool you pay for that only does half the job.</p>
         </div>
 
         <div class="practices">
@@ -86,11 +111,14 @@
               <h3>Systems</h3>
               <p>Internal tools and portals built around how your team actually works, instead of a generic SaaS product they have to work around.</p>
             </div>
-            <ul class="practice__examples">
+            <div class="practice__examples">
+              <span class="label">For example</span>
+              <ul>
               <li>Replace the six spreadsheets your ops team reconciles every Friday with one app and one source of truth.</li>
               <li>A job-tracking tool for a field services company that connects dispatch, technician notes and invoicing.</li>
               <li>A client intake and status portal for a law or accounting firm, so clients stop emailing to ask where their file stands.</li>
-            </ul>
+              </ul>
+            </div>
           </article>
 
           <article class="practice grid">
@@ -98,11 +126,14 @@
               <h3>Data &amp; Analytics</h3>
               <p>Pipelines that pull your data into one place automatically, and reports that are already done when Monday starts.</p>
             </div>
-            <ul class="practice__examples">
+            <div class="practice__examples">
+              <span class="label">For example</span>
+              <ul>
               <li>Combine order, inventory and ad-spend data from an online store into a warehouse you own.</li>
               <li>Weekly job-costing reports for a construction company, pulled from accounting and project management without anyone copying and pasting.</li>
               <li>Dashboards for a group of clinics showing appointment volume, no-shows and payer mix by location.</li>
-            </ul>
+              </ul>
+            </div>
           </article>
 
           <article class="practice grid">
@@ -110,20 +141,25 @@
               <h3>AI Workflows</h3>
               <p>Document extraction, summarization and agents for repetitive reading and routing work. Each one ships with tests and logging, so you can see what it did and catch it when it's wrong.</p>
             </div>
-            <ul class="practice__examples">
+            <div class="practice__examples">
+              <span class="label">For example</span>
+              <ul>
               <li>Pull line items, dates and totals from freight bills and carrier invoices into your logistics system.</li>
-              <li>Summarize intake calls or consultation notes into a standard format your team can review in seconds.</li>
+              <li>Summarize intake calls or consultation notes into a standard format your team can check and correct.</li>
               <li>Triage an agency's shared inbox: classify requests, draft replies, and route each one to the right person for approval.</li>
-            </ul>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="fit" aria-labelledby="fit-title">
+    <section class="section fit" id="fit" aria-labelledby="fit-title">
       <div class="container">
-        <h2 id="fit-title">Who it's for</h2>
-        <p class="fit__statement">Companies of roughly 10 to 500 people that have outgrown their spreadsheets but don't have a software team.</p>
+        <div class="grid section-head">
+          <h2 id="fit-title">Who it's for</h2>
+          <p class="fit__statement">Companies of roughly 10 to 500 people that have outgrown their spreadsheets but don't have a software team.</p>
+        </div>
         <ul class="fit__list grid">
           <li><strong>Ops-heavy businesses</strong>Logistics, construction, field services and e-commerce, where much of the work is moving information between systems.</li>
           <li><strong>Professional services firms</strong>Law, accounting, agencies and clinics, where staff time goes to intake, status updates and paperwork.</li>
@@ -141,7 +177,7 @@
 
         <ol class="steps">
           <li class="step">
-            <span class="step__label">Step 1</span>
+            <span class="label">Step 1</span>
             <h3>Systems Audit</h3>
             <p>A short review of how work and data move through your business today. We talk with the people doing the work and look at the tools and files they use.</p>
             <dl>
@@ -150,7 +186,7 @@
             </dl>
           </li>
           <li class="step">
-            <span class="step__label">Step 2</span>
+            <span class="label">Step 2</span>
             <h3>Blueprint Sprint</h3>
             <p>One to two weeks defining exactly what gets built, before any production code.</p>
             <dl>
@@ -159,7 +195,7 @@
             </dl>
           </li>
           <li class="step">
-            <span class="step__label">Step 3</span>
+            <span class="label">Step 3</span>
             <h3>Fixed-Price Build</h3>
             <p>We build what the blueprint describes, for the price we quoted.</p>
             <dl>
@@ -168,7 +204,7 @@
             </dl>
           </li>
           <li class="step">
-            <span class="step__label">Step 4</span>
+            <span class="label">Step 4</span>
             <h3>Care Plan</h3>
             <p>Software needs upkeep after it ships.</p>
             <dl>
@@ -233,7 +269,7 @@
       </div>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
+    <section class="section contact invert" id="contact" aria-labelledby="contact-title">
       <div class="container grid">
         <h2 id="contact-title">Start with a Systems Audit</h2>
         <div class="contact__body">
@@ -257,6 +293,8 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
+      <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="62" height="24" alt="" loading="lazy">
+      <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="62" height="24" alt="" loading="lazy">
       <p>&copy; 2026 CEV Analytics LLC &middot; Charlotte, NC</p>
       <p><a href="mailto:info@cevanalytics.com">info@cevanalytics.com</a></p>
     </div>

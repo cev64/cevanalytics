@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/brand/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/brand/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/brand/apple-touch-icon-180.png">
@@ -23,14 +23,14 @@
   </script>
   <script src="/assets/js/theme.js" defer></script>
 </head>
-<body>
+<body class="page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="/">
-        <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="86" height="32" alt="CEV home">
-        <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="86" height="32" alt="CEV home">
+      <a class="brand" href="/" aria-label="CEV home">
+        <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="83" height="32" alt="">
+        <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="83" height="32" alt="">
       </a>
       <nav class="site-nav" aria-label="Main">
         <ul>
@@ -48,7 +48,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="not-found" aria-labelledby="nf-title">
       <div class="container">
         <h1 id="nf-title">This page doesn't exist.</h1>
@@ -63,6 +63,8 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
+      <img class="logo--light" src="/assets/brand/cev-logo-light.png" srcset="/assets/brand/cev-logo-light.png 1x, /assets/brand/cev-logo-light@2x.png 2x" width="62" height="24" alt="" loading="lazy">
+      <img class="logo--dark" src="/assets/brand/cev-logo-dark.png" srcset="/assets/brand/cev-logo-dark.png 1x, /assets/brand/cev-logo-dark@2x.png 2x" width="62" height="24" alt="" loading="lazy">
       <p>&copy; 2026 CEV Analytics LLC &middot; Charlotte, NC</p>
       <p><a href="mailto:info@cevanalytics.com">info@cevanalytics.com</a></p>
     </div>
